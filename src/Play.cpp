@@ -44,13 +44,16 @@ void game(){
     cout << "Chislo    Bulls    Cows" << endl;
     for (;;){
         cin >> input;
-        if (input < max && input > min){
-        sravnenie();
-        cout << "            " << Bulls() << "       " << Cows();
-        cout << endl;
-        if (Bulls() == 4){
-            cout << "Congratulations! You won!" << endl;
-            break;
+        if (input == 0){
+            exit(0);
+        }
+        else if (input < max && input > min){
+            sravnenie();
+            cout << "            " << Bulls() << "       " << Cows();
+            cout << endl;
+            if (Bulls() == 4){
+                cout << "Congratulations! You won!" << endl;
+                break;
             }
         }
         else {
