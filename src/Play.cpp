@@ -4,64 +4,73 @@ using namespace std;
 
 int mass1[4], mass2[4], input;
 
-void zadumannoe(){
-    srand(time(0));
-    mass1[0] = rand()%9 + 1;
-    for (int i = 0; i < 4; i++){
+void zadumannoe()
+{
+	srand(time(0));
+    mass1[0] = rand() % 9 + 1;
+    for (int i = 0; i < 4; i++) {
         mass1[i] = rand()%10;
-        }
     }
-void sravnenie(){
-    for (int i = 3; i > -1; i--){
+}
+
+void sravnenie() 
+{
+    for (int i = 3; i > -1; i--) {
         mass2[i] = input % 10;
         input /= 10;
-        }
     }
-int Bulls(){
+}
+
+int Bulls() 
+{
     int bulls = 0;
-    for (int i = 0; i < 4; i++){
-        if (mass1[i] == mass2[i]){
+    for (int i = 0; i < 4; i++) {
+        if (mass1[i] == mass2[i]) {
             bulls++;
-            }
+        }
         
-        }
+    }
     return bulls;
-    }
-int Cows(){
+}
+
+int Cows()
+{
     int cows = 0;
-    for (int i = 0;  i < 4; i++){
-        for (int k = 0; k < 4; k++){
-            if (mass1[i] == mass2[k] && i != k){
+    for (int i = 0;  i < 4; i++) {
+        for (int k = 0; k < 4; k++) {
+            if (mass1[i] == mass2[k] && i != k) {
                 cows++;
-                }
-            } 
-        }
-    return cows;
+            }
+        } 
     }
-void game(){
+    return cows;
+}
+
+void game()
+{
     int min = 999, max = 10000;
     zadumannoe();
     cout << "Chislo    Bulls    Cows" << endl;
-    for (;;){
+    for (;;) {
         cin >> input;
-        if (input == 0){
+        if (input == 0) {
             exit(0);
-        }
-        else if (input < max && input > min){
+        } else if (input < max && input > min) {
             sravnenie();
             cout << "            " << Bulls() << "       " << Cows();
             cout << endl;
-            if (Bulls() == 4){
+            if (Bulls() == 4) {
                 cout << "Congratulations! You won!" << endl;
                 break;
             }
-        }
-        else {
+        } else {
             cout << "Input error, you must enter a four-digit number." << endl;
         }
     }
 }
-int Play(){
+
+int Play()
+{
     char A;
     cout << "Welcome to the BullsandCows game." << endl;
     cout << "I made a four-digit number and your task is to guess it!"  << endl;
@@ -76,13 +85,12 @@ int Play(){
         game();
         cout << "Again? Enter (y/n)" << endl;
         cin >> A;
-        if (A == 'y'){
+        if (A == 'y') {
             break;
-            }
-        else if (A == 'n'){
+        }else if (A == 'n'){
             exit(0);
-            }
         }
+    }
     system("pause");
     return 0;
-    }
+}
