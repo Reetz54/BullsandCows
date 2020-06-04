@@ -1,6 +1,7 @@
 #include "functions.h"
 
-int Menu(){
+int Menu()
+{
     int a = 0;
     system("clear");
     cout << "   Enter 'Start' to quit " << endl;
@@ -11,12 +12,10 @@ int Menu(){
         if (Write == "Start") {
             system("clear");
             Play();
-        }
-        else if (Write == "Exit"){
+        } else if (Write == "Exit") {
             system("clear");
             exit(0);
-        }
-        else {
+        } else {
             cout << "Input Error." << endl;
         }
     }
