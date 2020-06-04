@@ -48,7 +48,7 @@ int Cows()
 
 void game()
 {
-    int min = 999, max = 10000;
+    int number_of_moves = 0,min = 999, max = 10000;
     zadumannoe();
     cout << "Chislo    Bulls    Cows" << endl;
     for (;;) {
@@ -56,9 +56,11 @@ void game()
         if (input == 0) {
             exit(0);
         } else if (input < max && input > min) {
+        	number_of_moves++ ;
             sravnenie();
             cout << "            " << Bulls() << "       " << Cows();
             cout << endl;
+            cout << "Number of moves: " << number_of_moves << endl;
             if (Bulls() == 4) {
                 cout << "Congratulations! You won!" << endl;
                 break;
