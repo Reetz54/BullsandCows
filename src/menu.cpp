@@ -17,7 +17,7 @@ int Menu(){
             exit(0);
         }
         else {
-            cout << "Input Error.";
+            cout << "Input Error." << endl;
         }
     }
     return 0;
