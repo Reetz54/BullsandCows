@@ -2,15 +2,28 @@
 
 using namespace std;
 
-int mass1[4], mass2[4], input;
+int A, mass1[4], mass2[4], input;
+bool start_game;
 
 void zadumannoe()
 {
-	srand(time(0));
-    mass1[0] = rand() % 9 + 1;
-    for (int i = 0; i < 4; i++) {
-        mass1[i] = rand()%10;
+    srand(time(0));
+    A = rand() % 9999 + 1000;
+    for (int i = 3; i > -1; i--) {
+		mass1[i] = A % 10;
+		A /= 10;		
     }
+}
+
+void proverka() 
+{
+	if (mass1[0] > 0 && mass1[0] != mass1[1] && mass1[0] != mass1[2]) {
+		if(mass1[0] != mass1[3] && mass1[1] != mass1[2]) {
+			if (mass1[1] != mass1[3] && mass1[2] != mass1[3]) { 
+				start_game = true;			
+			}
+		}
+	} 
 }
 
 void sravnenie() 
@@ -50,25 +63,32 @@ void game()
 {
     int number_of_moves = 0,min = 999, max = 10000;
     zadumannoe();
-    cout << "Chislo    Bulls    Cows" << endl;
-    for (;;) {
-        cin >> input;
-        if (input == 0) {
-            exit(0);
-        } else if (input < max && input > min) {
-        	number_of_moves++ ;
-            sravnenie();
-            cout << "            " << Bulls() << "       " << Cows();
-            cout << endl;
-            cout << "Number of moves: " << number_of_moves << endl;
-            if (Bulls() == 4) {
-                cout << "Congratulations! You won!" << endl;
-                break;
-            }
-        } else {
-            cout << "Input error, you must enter a four-digit number." << endl;
-        }
-    }
+	proverka();
+	if (start_game) {
+		cout << "Chislo    Bulls    Cows" << endl;
+    	for (;;) {
+        	cin >> input;
+        	if (input == 0) {
+           		exit(0);
+        	} else if (input < max && input > min) {
+        		number_of_moves++ ;
+            	sravnenie();
+            	cout << "            " << Bulls() << "       " << Cows();
+            	cout << endl;
+            	cout << "Number of moves: " << number_of_moves << endl;
+            	if (Bulls() == 4) {
+                	cout << "Congratulations! You won!" << endl;
+                	break;
+            	}
+        	} else {
+            	cout << "Input error, you must enter a four-digit number.";
+				cout << endl;
+        	}
+    	}
+	} else {
+		game();
+	}
+    
 }
 
 int Play()
@@ -88,8 +108,8 @@ int Play()
         cout << "Again? Enter (y/n)" << endl;
         cin >> A;
         if (A == 'y') {
-            break;
-        }else if (A == 'n'){
+            Play();
+        } else if (A == 'n'){
             exit(0);
         }
     }
